@@ -1,9 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @conversation.name %>
 </p>
+<div data-behavior="messages">
+  <% @messages.each do |message| %>
+    <div><strong><%= message.user.name %>:</strong><%= message.body%></div>
+  <%end%>
+</div>
 
-<%= link_to 'Edit', edit_conversation_path(@conversation) %> |
-<%= link_to 'Back', conversations_path %>
+<%= form_for [@conversation, Message.new] do |f| %>
+  <%= f.text_area :body, rows: 1, class: "form-control", autofocus: true%>
+  <%= f.submit "Submit", class: "form-control"%>
+<%end%>

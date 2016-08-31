@@ -10,6 +10,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
+    @messages = @conversation.messages.order(created_at: :desc).limit(100).reverse
   end
 
   # GET /conversations/new

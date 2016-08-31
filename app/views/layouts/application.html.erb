@@ -50,8 +50,29 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="" style="margin-top: 70px">
-      <%= yield %>
+    <div class="container-fluid" id="mainContentWrapper">
+      <div class="row">
+        <div class="col-xs-2" id="mainContentSidebar">
+          <% if user_signed_in? %>
+            <h5>All Conversations</h5>
+            <ul>
+              <% Conversation.all.each do |conversation| %>
+                <li><%= link_to conversation.name, conversation %></li>
+              <%end%>
+            </ul>
+            <h5>My Conversations</h5>
+            <ul>
+              <% current_user.conversations.each do |conversation| %>
+                <li><%= link_to conversation.name, "#" %></li>
+              <%end%>
+            </ul>
+          <%end%>
+        </div>
+
+        <div class="col-xs-10 col-xs-offset-2" id="mainContentBody">
+          <%= yield %>
+        </div>
+      </div>
     </div>
 
   </body>

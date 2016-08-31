@@ -17,6 +17,12 @@
         <td><%= link_to 'Show', conversation %></td>
         <td><%= link_to 'Edit', edit_conversation_path(conversation) %></td>
         <td><%= link_to 'Destroy', conversation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to "Join", conversation_conversation_users_path(conversation), method: :post %>
+        </td>
+        <td>
+          <%= link_to "Leave", conversation_conversation_users_path(conversation), method: :delete %>
+        </td>
       </tr>
     <% end %>
   </tbody>
